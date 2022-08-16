@@ -1,0 +1,20 @@
+{
+    "cat3Id": "753595901607542784",
+    "cat4Id": "753595962991312957",
+    "cat5Id": "753596044255821884",
+
+    "helperId": "753605003960385576",
+    "proId": "1009089884629250048",
+    "insaId": "887978491457466388",
+    "diplomeId": "753571365084332102",
+
+    "coursPrefix": "👨‍🏫┃",
+    "promoPrefix": "🎓┃",
+    "classePrefix": "📚┃",
+
+    "embedColor": "#dd3d6d",
+    "roleSelectionHead": "Attribution des rôles",
+
+	"watching": "un cours de béton",
+	"botName": "GCU Bot"
+}
