@@ -1,27 +1,20 @@
-const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder  } = require('discord.js');
-const { embedColor, roleSelectionHead, promoPrefix, classePrefix, archiPrefix } = require('../../config.json');
+const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder } = require('discord.js');
+const { embedColor, promoPrefix, classePrefix, archiPrefix } = require('../../config.json');
+const RoleUtil = require('../../Utils/RoleUtil.js');
 
 module.exports = {
-	name: "role_eleve4",
+	name: "course_channel",
 	async execute(interaction) {
-		const baseValue = "role_eleve5?"
-		
+		const baseValue = "course_channel2?0?"
+
         const row = new ActionRowBuilder()
 			.addComponents(
 				new SelectMenuBuilder()
-					.setCustomId('role_plus')
-					.setPlaceholder('Rôle')
+					.setCustomId('course_channel')
+					.setPlaceholder("Groupes d'élèves")
 					.setMinValues(1)
 					.setMaxValues(14)
 					.addOptions([
-						{
-							label: 'Ingé Archi',
-							value: baseValue +archiPrefix+ 'Ingé Archi',
-						},
-						{
-							label: 'Archi Ingé',
-							value: baseValue +archiPrefix+ 'Archi Ingé',
-						},
 						{
 							label: '3 GCU',
 							value: baseValue +promoPrefix+ '3GCU',
@@ -69,16 +62,24 @@ module.exports = {
                         {
 							label: 'Groupe 5BAT',
 							value: baseValue +classePrefix+ '5BAT',
+						},
+						{
+							label: 'Ingé Archi',
+							value: baseValue +archiPrefix+ 'Ingé Archi',
+						},
+						{
+							label: 'Archi Ingé',
+							value: baseValue +archiPrefix+ 'Archi Ingé',
 						}
 					])
 			)
-		
-		const text = 'Choisissez votre rôle supplémentaire:'
+
+		const text = `Choisissez la/les promotions concernées`
 		const embed = new EmbedBuilder()
-            .setColor(embedColor)
-            .setTitle(roleSelectionHead)
-            .setDescription(text)
-		
-			await interaction.update({ embeds: [embed], ephemeral: true, components: [row] })
+			.setColor(embedColor)
+			.setTitle("Création d'une salle de cours")
+			.setDescription(text)
+
+        await interaction.reply({ embeds: [embed], ephemeral: true , components: [row] })
 	}
 }

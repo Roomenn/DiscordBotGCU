@@ -4,7 +4,7 @@ class RoleUtil {
     static async giveRole(guild, member, roleName) {
         let role = guild.roles.cache.find(role => role.name === roleName)
 
-        if (!role)
+        if (!role || role.id == helperId)
             return console.log("Role not Found: " + roleName)
         
         await member.roles.add(role)
@@ -13,7 +13,7 @@ class RoleUtil {
     static async giveRoleId(guild, member, roleId) {
         let role = guild.roles.cache.find(role => role.id === roleId)
 
-        if (!role)
+        if (!role || roleId == helperId)
             return console.log("Role not Found: " + roleId)
         
         await member.roles.add(role)
@@ -34,7 +34,7 @@ class RoleUtil {
 
     static async giveRoleList(guild, member, roleNameList) {
         roleNameList.forEach(async roleName => {
-            const role = await guild.roles.cache.find(role => role.name.includes(roleName))
+            const role = await guild.roles.cache.find(role => role.name === roleName)
             if (role && role.id != helperId)
                 await member.roles.add(role)
         })
@@ -82,7 +82,7 @@ class RoleUtil {
     static async setRoleList(guild, member, roleNameList) {
         const roleList = []
         roleNameList.forEach(async roleName => {
-            const role = await guild.roles.cache.find(role => role.name.includes(roleName))
+            const role = await guild.roles.cache.find(role => role.name.includes(roleName)) //TODO
             if (role && role.id != helperId)
                 roleList.push(role)
         });
@@ -103,6 +103,17 @@ class RoleUtil {
 			if (role.name.includes(prefix)) {
 				list.push(role)
 			}
+        });
+        return list
+    }
+
+    static async getRoleListFromNames(guild, namesList) {
+        let list = []
+        namesList.forEach(async roleName => {
+            const role = await guild.roles.cache.find(role => role.name === roleName)
+			if (role)
+				list.push(role)
+			
         });
         return list
     }

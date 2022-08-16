@@ -1,32 +1,31 @@
 const { ActionRowBuilder, EmbedBuilder, SelectMenuBuilder } = require('discord.js');
-const { embedColor, roleSelectionHead, promoPrefix } = require('../../config.json');
-const RoleUtil = require('../../Utils/RoleUtil.js');
+const { embedColor, roleSelectionHead } = require('../../config.json');
 
 module.exports = {
 	name: "role_eleve",
 	async execute(interaction) {
 
-		prefix = promoPrefix
-        componentOptions = []
-        roles = await RoleUtil.getRoleListFromString(interaction.guild, prefix)
-        roles.forEach(role =>{
-			if (componentOptions.length < 24) {
-				const name = role.name.replace(prefix, '')
-				componentOptions.push(
-					{
-						label: name,
-						value: "role_eleve2?" + name
-					})
-			}
-        })
-
 		const text = ":small_blue_diamond::arrow_forward: Choisissez votre **promotion**:"
-        const row = new ActionRowBuilder()
-			.addComponents(
-				new SelectMenuBuilder()
-					.setCustomId('promo')
-					.setPlaceholder("Rien de sélectionné")
-					.addOptions(componentOptions))
+		const row = new ActionRowBuilder()
+		.addComponents(
+			new SelectMenuBuilder()
+				.setCustomId('promo')
+				.setPlaceholder('Promotion')
+				.addOptions([
+					{
+						label: '3 GCU',
+						value: 'role_eleve2?3GCU',
+					},
+					{
+						label: '4 GCU',
+						value: 'role_eleve2?4GCU',
+					},
+					{
+						label: '5 GCU',
+						value: 'role_eleve2?5GCU',
+					},
+				]),
+		);
 
 		const embed = new EmbedBuilder()
 			.setColor(embedColor)

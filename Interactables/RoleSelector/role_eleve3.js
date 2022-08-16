@@ -7,19 +7,14 @@ module.exports = {
 	async execute(interaction) {
         const guild = interaction.guild
         const member = await guild.members.fetch(interaction.member.id)
-        let giveOnly = false
 
-        let params = ["Élève"]
+        let params = []
         await interaction.values.forEach(value => {
             const [_, ...valueParams] = value.split("?")
-            if (valueParams[0] === "GIVE") {
-                giveOnly = true
-                valueParams.splice(0, 1)
-            }
             params.push(...valueParams)
         })
         
-        giveOnly ? RoleUtil.giveRoleList(guild, member, params) : RoleUtil.setRoleList(guild, member, params)
+        RoleUtil.setRoleList(guild, member, params)
         
 
         const row = new ActionRowBuilder()
@@ -30,9 +25,9 @@ module.exports = {
 					.setStyle(ButtonStyle.Secondary),
 			);
 
-            const text = `**Configuration Terminée !** :tada:
+        const text = `**Configuration Terminée !** :tada:
 
-:white_small_square: Si tu es dans un cas particulier, tu peux choisir un rôle supplémentaire:`
+:white_small_square: Si tu es dans un cas particulier, tu peux choisir des rôles supplémentaires:`
 
         const embed = new EmbedBuilder()
             .setColor(embedColor)

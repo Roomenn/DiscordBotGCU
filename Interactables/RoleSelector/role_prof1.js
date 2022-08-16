@@ -33,7 +33,7 @@ module.exports = {
 				new SelectMenuBuilder()
 					.setCustomId('cours')
 					.setPlaceholder("Rien de sélectionné")
-					.setMinValues(0)
+					.setMinValues(1)
 					.setMaxValues(componentOptions.length)
 					.addOptions(componentOptions))
 		

@@ -1,7 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { Permissions } = require('discord.js');
-const { cat3Id, cat4Id, cat5Id } = require('../../config.json');
-const RoleUtil = require('../../Utils/RoleUtil.js');
+const { cat3Id, cat4Id, cat5Id, promoPrefix, classePrefix } = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -33,14 +31,6 @@ module.exports = {
 						.setRequired(true))),
 	
 	async execute(interaction) {
-		const member = await interaction.guild.members.fetch(interaction.member.id)
-		
-		const isAllowed = await RoleUtil.hasRole(interaction.guild, member, "Professeur") || await RoleUtil.hasRole(interaction.guild, member, "Helper")
-
-		if (!isAllowed) {
-			await interaction.reply({ content: 'Vous n\'avez pas les permissions nécéssaires' , ephemeral: true})
-			return
-		}
 		
         if (interaction.options.getSubcommand() === 'creer') {
 			const group = interaction.options.getRole('élèves')
@@ -49,51 +39,51 @@ module.exports = {
 			var channelName = ""
 			var categoryId = ""
 			switch (group.name) {
-				case "3GCU":
+				case promoPrefix + "3GCU":
 					channelName += "👥-3-gcu-"
 					categoryId = cat3Id
 					break;
-				case "4GCU":
+				case promoPrefix + "4GCU":
 					channelName += "👥-4-gcu-"
 					categoryId = cat4Id
 					break;
-				case "5GCU":
+				case promoPrefix + "5GCU":
 					channelName += "👥-5-gcu-"
 					categoryId = cat5Id
 					break
-				case "3A":
+				case classePrefix + "3A":
 					channelName += "👷-3-a-"
 					categoryId = cat3Id
 					break
-				case "3B":
+				case classePrefix + "3B":
 					channelName += "👷-3-b-"
 					categoryId = cat3Id
 					break
-				case "3C":
+				case classePrefix + "3C":
 					channelName += "👷-3-c-"
 					categoryId = cat3Id
 					break
-				case "4A":
+				case classePrefix + "4A":
 					channelName += "👷-4-a-"
 					categoryId = cat4Id
 					break
-				case "4B":
+				case classePrefix + "4B":
 					channelName += "👷-4-b-"
 					categoryId = cat4Id
 					break
-				case "4C":
+				case classePrefix + "4C":
 					channelName += "👷-4-c-"
 					categoryId = cat4Id
 					break
-				case "5GU":
+				case classePrefix + "5GU":
 					channelName += "👷-5-gu-"
 					categoryId = cat5Id
 					break
-				case "5TP":
+				case classePrefix + "5TP":
 					channelName += "👷-5-tp-"
 					categoryId = cat5Id
 					break
-				case "5BAT":
+				case classePrefix + "5BAT":
 					channelName += "👷-5-bat-"
 					categoryId = cat5Id
 					break
