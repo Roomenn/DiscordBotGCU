@@ -6,10 +6,10 @@ function loadCommands(client) {
 	let commandsArray = []
 	let developerArray = []
 
-	const commandFolders = fs.readdirSync("./commands")
+	const commandFolders = fs.readdirSync("./Commands")
 	for (const folder of commandFolders) {
 		const commandFiles = fs
-			.readdirSync(`./commands/${folder}`)
+			.readdirSync(`./Commands/${folder}`)
 			.filter((file) => file.endsWith(".js"))
 
 		for (const file of commandFiles) {
