@@ -8,16 +8,22 @@ module.exports = {
 		const maxValues = coursPageValue
         prefix = coursPrefix
 		
-		const recall = this.name
 		let paramsValue = ""
 		let page
 
 		let params = []
-        await interaction.values.forEach(value => {
-            const [_, n, ...valueParams] = value.split("?")
-			page = n
+		if (interaction.isButton()) {
+            const [_, n, ...valueParams] = interaction.customId.split("?")
+	        page = n
             params.push(...valueParams)
-        })
+        } else if (interaction.isSelectMenu()) {
+			await interaction.values.forEach(value => {
+				const [_, n, ...valueParams] = value.split("?")
+				page = n
+				params.push(...valueParams)
+			})
+        }
+        
 
 		params.forEach(async roleName => {
 			paramsValue += "?" + roleName
@@ -48,7 +54,7 @@ module.exports = {
 		if (page > 0) {
 			pageButtons.push(
 			new ButtonBuilder()
-				.setCustomId(recall + (parseInt(page)-1) + paramsValue)
+				.setCustomId("course_channel2?" + (parseInt(page)-1) + paramsValue)
 				.setLabel('‎')
 				.setStyle(ButtonStyle.Secondary)
 				.setEmoji("◀️")
@@ -57,7 +63,7 @@ module.exports = {
 		if (page*maxValues < roles.length) {
 			pageButtons.push(
 			new ButtonBuilder()
-				.setCustomId(recall + (parseInt(page)+1) + paramsValue)
+				.setCustomId("course_channel2?" + (parseInt(page)+1) + paramsValue)
 				.setLabel('‎')
 				.setStyle(ButtonStyle.Secondary)
 				.setEmoji("▶️")
@@ -72,6 +78,6 @@ module.exports = {
 			.setTitle("Création d'une salle de cours")
 			.setDescription(text)
 
-        await interaction.update({ embeds: [embed], ephemeral: true , components: [row] })
+        await interaction.update({ embeds: [embed], ephemeral: true , components: [row, buttons] })
 	}
 }
