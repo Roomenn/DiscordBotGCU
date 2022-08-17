@@ -1,4 +1,4 @@
-const { EmbedBuilder, userMention, channelMention, ChannelType, PermissionsBitField } = require('discord.js');
+const { EmbedBuilder, channelMention, ChannelType, PermissionsBitField } = require('discord.js');
 const { embedColor, promoPrefix, classePrefix, botId, cat3Id, cat4Id, cat5Id } = require('../../config.json');
 const RoleUtil = require('../../Utils/RoleUtil.js');
 

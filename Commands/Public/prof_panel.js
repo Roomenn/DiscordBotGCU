@@ -38,7 +38,7 @@ module.exports = {
 
             const embed = new EmbedBuilder()
                 .setColor(embedColor)
-                .setTitle("Gestionnaire de commandes")
+                .setTitle("Panneau de commandes")
                 .setDescription(text)
                 .addFields(
                     { name: '\u200B',value: text2 })
