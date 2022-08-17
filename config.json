@@ -4,6 +4,7 @@
     "cat5Id": "753596044255821884",
 
     "helperId": "753605003960385576",
+    "adminId": "689842555135066189",
     "botId": "753570977987821619",
     "proId": "1009089884629250048",
     "insaId": "887978491457466388",
@@ -20,5 +21,7 @@
     "roleSelectionHead": "Attribution des rôles",
 
 	"watching": "un cours de béton",
-	"botName": "GCU Bot"
+	"botName": "GCU Bot",
+
+    "graduationIsDev": true
 }

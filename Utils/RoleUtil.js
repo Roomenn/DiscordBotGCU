@@ -1,4 +1,4 @@
-const { helperId } = require('../config.json');
+const { helperId, graduationIsDev } = require('../config.json');
 class RoleUtil {
 
     static async giveRole(guild, member, roleName) {
@@ -127,6 +127,31 @@ class RoleUtil {
         return member.roles.cache.has(role.id)
     }
 
+    static async getMembers(guild, roleID) {
+        if (graduationIsDev) {
+            const fetchedMembers = [await guild.members.fetch("753565271637098526"), await guild.members.fetch("115054203977728007")]
+            const memberList = fetchedMembers.filter(member => member.roles.cache.has(roleID))
+            return memberList
+        } else {
+            const memberList = []
+            const fetchedMembers = await guild.members.fetch()
+            
+            fetchedMembers.forEach( async member => {
+                if (member.roles.cache.has(roleID))
+                    memberList.push(member)
+            })
+            return memberList
+        }
+        
+	}
+
+    static async removeEveryRole(guild, roleID) {
+		const list = await this.getMembers(guild, roleID)
+		list.forEach(async member => {
+			member.roles.remove(roleID)
+		});
+		return list.length
+	}
 }
 
 module.exports = RoleUtil;

@@ -1,4 +1,4 @@
-const { ActionRowBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle  } = require('discord.js');
+const { ActionRowBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const { embedColor, roleSelectionHead } = require('../../config.json');
 const RoleUtil = require('../../Utils/RoleUtil.js');
 
@@ -26,8 +26,21 @@ module.exports = {
 			);
 
         const text = `**Configuration Terminée !** :tada:
+En tant qu'élève, tu as accès à plein de salons:
+▫️ Des salons d'échanges entre élèves:
+<#753593816644059197>
+<#753582862099284018>
+(Et aussi un salon de promo)
 
-:white_small_square: Si tu es dans un cas particulier, tu peux choisir des rôles supplémentaires:`
+▫️ Un salon d'offres de stage:
+<#786640880420782130> 
+
+▫️ Tout un tas de salon de cours en fonction de ce que vos profs actifs ont crées
+
+▫️ Un salon d'orientation accessible aux STPI:
+<#887980530107310111> 
+
+▫️ Si tu es dans un cas particulier, tu peux choisir des rôles supplémentaires:`
 
         const embed = new EmbedBuilder()
             .setColor(embedColor)
